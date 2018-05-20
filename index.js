@@ -238,7 +238,7 @@
     /** Event Listeners END */
 
     function postHouseHoldData(household, done) {
-      if (household) {
+      if (household && household.length > 0) {
         setTimeout(function() {
           debugEl.innerHTML = JSON.stringify(household, 0, 2);
           debugEl.style.display = 'block';
