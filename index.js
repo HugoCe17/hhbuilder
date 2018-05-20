@@ -228,17 +228,19 @@
           throw new Error(err);
         }
 
-        postHouseHoldData(res.people, function(err, res) {
-          if (err) throw new Error(err);
+        if (res.people.length > 0) {
+          postHouseHoldData(res.people, function(err, res) {
+            if (err) throw new Error(err);
 
-          console.log('Data Recieved');
-        });
+            console.log('Data Recieved');
+          });
+        }
       });
     });
     /** Event Listeners END */
 
     function postHouseHoldData(household, done) {
-      if (household && household.length > 0) {
+      if (household) {
         setTimeout(function() {
           debugEl.innerHTML = JSON.stringify(household, 0, 2);
           debugEl.style.display = 'block';
@@ -295,10 +297,14 @@
               );
 
               // remove table if there aren't people in the household
-              if (HouseHold.getPeopleCount() === 0)
+              if (HouseHold.getPeopleCount() === 0) {
                 householdListTableEl.parentNode.removeChild(
                   householdListTableEl,
                 );
+
+                // hide debug if HouseHold is empty
+                debugEl.style.display = 'none';
+              }
             });
           });
         });
