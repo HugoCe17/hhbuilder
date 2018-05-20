@@ -1,8 +1,3 @@
-/** Author: Hugo Cedano
- *  Email: hugoce17@gmail.com
- *  cell: (305) 790-7719
- */
-
 (function(event) {
   function Person(age, relationship, doesSmoke) {
     if (!age) {
